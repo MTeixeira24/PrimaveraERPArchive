@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+	
+	<head>
+		<% include ../partials/head %>
+		<!-- NProgress -->
+		<link href="/vendors/nprogress/nprogress.css" rel="stylesheet">
+		<!-- iCheck -->
+		<link href="/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+		
+		<!-- bootstrap-progressbar -->
+		<link href="/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+		<!-- JQVMap -->
+		<link href="/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet" />
+		<!-- bootstrap-daterangepicker -->
+		<link href="/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+		
+		<% include ../partials/post_head %>
+	</head>
+	
+	<body class="nav-md">
+		<div class="container body">
+			<div class="main_container">
+				<% include ../partials/sidebar %>
+				<% include ../partials/topnav %>
+				
+				<!-- page content -->
+				<div class="right_col" role="main">
+					<!-- top tiles -->
+					<div class="row tile_count">
+						<div class="col-md-3 col-sm-4 col-xs-12 tile_stats_count text-center">
+							<span class="count_top"><i class="fa fa-usd"></i> Dívidas</span>
+							<div id="dividasForn" class="count"><%= homepage.totalDivida %> &euro;</div>
+							<span class="count_bottom">a fornecedores</span>
+						</div>
+						<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count text-center">
+							<span class="count_top"><i class="fa fa-shopping-cart"></i> Artigos</span>
+							<div id="vedArtM" class="count"><%= homepage.totalArtigosVendidosMes %></div>
+							<span class="count_bottom">vendidos este mês</span>
+						</div>
+						<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count text-center">
+							<span class="count_top"><i class="fa fa-user"></i> Clientes</span>
+							<div id="clientesMes" class="count"><%= homepage.totalClientesMes %></div>
+							<span class="count_bottom">este mês</span>
+						</div>
+						<div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count text-center">
+							<span class="count_top"><i class="fa fa-archive"></i> Stock</span>
+							<div id="stktotal" class="count"><%= homepage.stktotal %></div>
+							<span class="count_bottom">atual</span>
+						</div>
+						<div class="col-md-2 col-sm-6 col-xs-6 tile_stats_count text-center">
+							<span class="count_top"><i class="fa fa-list"></i> Encomendas</span>
+							<div id="encomendasMes" class="count"><%= homepage.totalEncomendas %></div>
+							<span class="count_bottom">este mês</span>
+						</div>
+					</div>
+					<!-- /top tiles -->
+					
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="x_panel">
+								
+								<div class="x_title">
+									<h2><a href="/ganhos">Evolução receita líquida - receita bruta <small>situação financeira</small></a></h2>
+									<ul class="nav navbar-right panel_toolbox">
+										<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+										<li><a class="close-link"><i class="fa fa-close"></i></a></li>
+									</ul>
+									<div class="clearfix"></div>
+								</div>
+								<div class="x_content">
+									<canvas id="ganhosChart" height="250px"></canvas>
+								</div>
+							</div>
+						</div>
+						
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<div class="x_panel">
+								<div class="x_title">
+									<h2><a href="/compras">Compras 2017</a></h2>
+									<ul class="nav navbar-right panel_toolbox">
+										<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+										<li><a class="close-link"><i class="fa fa-close"></i></a></li>
+									</ul>
+									<div class="clearfix"></div>
+								</div>
+								<div class="x_content">
+									<canvas id="comprasChart" height="250px"></canvas>
+								</div>
+							</div>
+						</div>
+						
+						
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<div class="x_panel">
+								<div class="x_title">
+									<h2><a href="/vendas">Vendas 2017</a></h2>
+									<ul class="nav navbar-right panel_toolbox">
+										<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+										<li><a class="close-link"><i class="fa fa-close"></i></a></li>
+									</ul>
+									<div class="clearfix"></div>
+								</div>
+								<div class="x_content">
+									<canvas id="vendasChart" height="250px"></canvas>
+								</div>
+							</div>
+						</div>
+						
+						<div class="col-sm-4 col-xs-12">
+							<div class="x_panel">
+								<div class="x_title">
+									<h2><a href="/clientes">Top clientes</a></h2>
+									<ul class="nav navbar-right panel_toolbox">
+										<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+										<li><a class="close-link"><i class="fa fa-close"></i></a></li>
+									</ul>
+									<div class="clearfix"></div>
+								</div>
+								<div class="x_content">
+									<canvas id="clientesChart" height="350px"></canvas>
+								</div>
+							</div>
+						</div>
+						
+						<div class="col-sm-4 col-xs-12">
+							<div class="x_panel">
+								<div class="x_title">
+									<h2><a href="/artigos">Top artigos</a></h2>
+									<ul class="nav navbar-right panel_toolbox">
+										<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+										<li><a class="close-link"><i class="fa fa-close"></i></a></li>
+									</ul>
+									<div class="clearfix"></div>
+								</div>
+								<div class="x_content">
+									<canvas id="artigosChart" height="350px"></canvas>
+								</div>
+							</div>
+						</div>
+						
+						<div class="col-sm-4 col-xs-12">
+							<div class="x_panel">
+								<div class="x_title">
+									<h2><a href="/fornecedores">Top fornecedores</a></h2>
+									<ul class="nav navbar-right panel_toolbox">
+										<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+										<li><a class="close-link"><i class="fa fa-close"></i></a></li>
+									</ul>
+									<div class="clearfix"></div>
+								</div>
+								<div class="x_content">
+									<canvas id="fornecedoresChart" height="350px"></canvas>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /page content -->
+				
+			</div>
+			
+		</div>
+		
+		<% include ../partials/footer %>
+		<!-- FastClick -->
+		<script src="/vendors/fastclick/lib/fastclick.js"></script>
+		<!-- NProgress -->
+		<script src="/vendors/nprogress/nprogress.js"></script>
+		<!-- Chart.js -->
+		<script src="/vendors/Chart.js/dist/Chart.min.js"></script>
+		<!-- gauge.js -->
+		<script src="/vendors/gauge.js/dist/gauge.min.js"></script>
+		<!-- bootstrap-progressbar -->
+		<script src="/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+		<!-- iCheck -->
+		<script src="/vendors/iCheck/icheck.min.js"></script>
+		<!-- Skycons -->
+		<script src="/vendors/skycons/skycons.js"></script>
+		<!-- Flot -->
+		<script src="/vendors/Flot/jquery.flot.js"></script>
+		<script src="/vendors/Flot/jquery.flot.pie.js"></script>
+		<script src="/vendors/Flot/jquery.flot.time.js"></script>
+		<script src="/vendors/Flot/jquery.flot.stack.js"></script>
+		<script src="/vendors/Flot/jquery.flot.resize.js"></script>
+		<!-- Flot plugins -->
+		<script src="/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+		<script src="/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+		<script src="/vendors/flot.curvedlines/curvedLines.js"></script>
+		<!-- DateJS -->
+		<script src="/vendors/DateJS/build/date.js"></script>
+		<!-- JQVMap -->
+		<script src="/vendors/jqvmap/dist/jquery.vmap.js"></script>
+		<script src="/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+		<script src="/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+		<!-- bootstrap-daterangepicker -->
+		<script src="/vendors/moment/min/moment.min.js"></script>
+		<script src="/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+		<script>
+			var homepage = <%- JSON.stringify(homepage) %>;
+			console.log(homepage);
+			console.log(homepage.GrossRevenues);
+			console.log(homepage.GrossRevenues);
+			var ctx = document.getElementById("ganhosChart").getContext('2d');
+			var ganhosChart = new Chart(ctx, {
+				type: 'line',
+				data: {
+					labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+					datasets: [{
+						label: 'Bruto (€)',
+						data: homepage.GrossRevenues,
+						backgroundColor: 'rgba(173,255,47, 0.2)',
+						borderColor: 'rgba(173,255,47,1)',
+						borderWidth: 1
+					},
+					{
+						label: 'Líquido (€)',
+						data: homepage.NetRevenues,
+						backgroundColor: 'rgba(34,139,34, 0.2)',
+						borderColor: 'rgba(34,139,34,1)',
+						borderWidth: 1
+					},
+					]
+				},
+				options: {
+					responsive: true, 
+					maintainAspectRatio: false,
+					scales: {
+						yAxes: [{
+							ticks: {
+								beginAtZero:true
+							}
+						}]
+					}
+				}
+			});
+			
+			console.log(homepage.Compras);
+			ctx = document.getElementById("comprasChart").getContext('2d');
+			var comprasChart = new Chart(ctx, {
+				type: 'line',
+				data: {
+					labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+					datasets: [{
+						label: '€',
+						data: homepage.Compras,
+						backgroundColor: 'rgba(255, 99, 132, 0.2)',
+						borderColor: 'rgba(255,99,132,1)',
+						borderWidth: 1
+					}]
+				},
+				options: {
+					scales: {
+						yAxes: [{
+							ticks: {
+								beginAtZero:true
+							}
+						}]
+					}
+				}
+			});
+			//var vendas = <%- JSON.stringify(homepage.Vendas) %>;
+			console.log(homepage.Vendas);
+			/*var vendas_por_mes = [0,0,0,0,0,0,0,0,0,0,0,0];
+				var vendas_por_cliente = [];
+				var vendas_por_artigo = [];
+				console.log(vendas);
+				vendas.forEach(function(venda){
+				var mes = moment(venda.InvoiceDate).month();
+				vendas_por_mes[mes] += parseFloat(venda.GrossTotal);
+				if(typeof vendas_por_cliente[venda.CustomerID] == 'undefined'){
+				vendas_por_cliente[venda.CustomerID] = parseFloat(venda.GrossTotal);
+				} else {
+				vendas_por_cliente[venda.CustomerID] += parseFloat(venda.GrossTotal);
+				}
+				});
+				console.log(vendas_por_mes);
+				vendas_por_mes.sort(function(a, b){console.log(a);return b - a});
+				console.log(vendas_por_mes);
+				console.log(vendas_por_cliente);
+				vendas_por_cliente.sort(function(a, b){console.log(a);return b - a});
+				console.log(vendas_por_cliente);
+			console.log(Math.max(...vendas_por_cliente));*/
+			ctx = document.getElementById("vendasChart").getContext('2d');
+			var vendasChart = new Chart(ctx, {
+				type: 'line',
+				data: {
+					labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+					datasets: [{
+						label: '€',
+						data: homepage.Vendas,
+						backgroundColor: 'rgba(124,252,0, 0.2)',
+						borderColor: 'rgba(124,252,0,1)',
+						borderWidth: 1
+					}]
+				},
+				options: {
+					scales: {
+						yAxes: [{
+							ticks: {
+								beginAtZero:true
+							}
+						}]
+					}
+				}
+			});
+			var clientes1 = Object.keys(homepage.TopClientes);
+			var clientes2 = clientes1.map(function (i) {
+				return (homepage.TopClientes)[i];
+			});
+			console.log(clientes1);
+			console.log(clientes2);
+			ctx = document.getElementById("clientesChart").getContext('2d');
+			var clientesChart = new Chart(ctx, {
+				type: 'horizontalBar',
+				data: {
+					labels: clientes1,
+					datasets: [{
+						label: '€',
+						data: clientes2,
+						backgroundColor: 'rgba(255,140,0, 0.2)',
+						borderColor: 'rgba(255,140,0, 1)',
+						borderWidth: 1
+					}]
+				},
+				options: {}
+			});
+			var artigos1 = Object.keys(homepage.TopArtigos);
+			var artigos2 = artigos1.map(function (i) {
+				return (homepage.TopArtigos)[i];
+			});
+			console.log(artigos1);
+			console.log(artigos2);
+			ctx = document.getElementById("artigosChart").getContext('2d');
+			var artigosChart = new Chart(ctx, {
+				type: 'horizontalBar',
+				data: {
+					labels: artigos1,
+					datasets: [{
+						label: '#',
+						data: artigos2,
+						backgroundColor: 'rgba(30,144,255, 0.2)',
+						borderColor: 'rgba(30,144,255, 1)',
+						borderWidth: 1
+					}]
+				},
+				options: {}
+			});
+			var fornecedores1 = Object.keys(homepage.TopFornecedores);
+			var fornecedores2 = fornecedores1.map(function (i) {
+				return (homepage.TopFornecedores)[i];
+			});
+			console.log(clientes1);
+			console.log(clientes2);
+			ctx = document.getElementById("fornecedoresChart").getContext('2d');
+			var fornecedoresChart = new Chart(ctx, {
+				type: 'horizontalBar',
+				data: {
+					labels: fornecedores1,
+					datasets: [{
+					label: '€',
+					data: fornecedores2,
+					backgroundColor: 'rgba(255,215,0, 0.2)',
+					borderColor: 'rgba(255,215,0, 1)',
+					borderWidth: 1
+				}]
+			},
+			options: {}
+		});
+	</script>
+	<% include ../partials/post_footer %>
+</body>
+
+</html>
+

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+	
+	<head>
+		<% include ../../partials/head %>
+		<!-- NProgress -->
+		<link href="/vendors/nprogress/nprogress.css" rel="stylesheet">
+		<!-- iCheck -->
+		<link href="/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+		<!-- Datatables -->
+		<link href="/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+		<link href="/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+		<link href="/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+		<link href="/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+		<link href="/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+		<% include ../../partials/post_head %>
+	</head>
+	
+	<body class="nav-md">
+		<div class="container body">
+			<div class="main_container">
+				<% include ../../partials/sidebar %>
+				<% include ../../partials/topnav %>
+				
+				<div class="right_col" role="main">
+					<div class="">
+						<div class="page-title">
+							<div class="title_left">
+								<h3><%= fornecedor.CodFornecedor %></h3>
+							</div>
+							
+							<div class="title_right">
+								<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+									<div class="input-group">
+										<input type="text" class="form-control" placeholder="Search for...">
+										<span class="input-group-btn">
+											<button class="btn btn-default" type="button">Go!</button>
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="clearfix"></div>
+						
+						<div class="row">
+							<div class="col-sm-6 col-xs-12">
+								<div class="row">	
+									<div class="col-xs-12">
+										<div class="x_panel">
+											
+											<div class="x_title">
+												<h2>Informação</h2>
+												<ul class="nav navbar-right panel_toolbox">
+													<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+													<li><a class="close-link"><i class="fa fa-close"></i></a></li>
+												</ul>
+												<div class="clearfix"></div>
+											</div>
+											
+											<div class="x_content">
+												<div class="row">
+													<strong>Código: </strong><%= fornecedor.CodFornecedor %>
+													<br>
+													<strong>Morada: </strong><%= fornecedor.Morada %>, <%= fornecedor.Local %> <%= fornecedor.Cp %>
+													<br>
+													<strong>Tel: </strong><%= fornecedor.Tel %>
+													<br>
+													<strong>Dívida: </strong><%= fornecedor.Divida %>
+													<br>
+													<strong>NIF: </strong><%= fornecedor.NumContrib %>
+													<br>
+													<strong>Modo pagamento: </strong><%= fornecedor.ModoPag %>
+													<br>
+													<strong>Endereço Web: </strong><%= fornecedor.EnderecoWeb %>
+													<br>
+													<strong>Encomendas pendentes: </strong><%= fornecedor.EncomendasPendentes %>
+													<br>
+													<input type="hidden" id="address" value="<%= fornecedor.Morada %> <%= fornecedor.Local %>">
+												</div>
+											</div>
+										</div>
+									</div>
+									
+									<div class="col-xs-12">
+										<div class="x_panel">
+											
+											<div class="x_title">
+												<h2>Gráfico</h2>
+												<ul class="nav navbar-right panel_toolbox">
+													<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+													<li><a class="close-link"><i class="fa fa-close"></i></a></li>
+												</ul>
+												<div class="clearfix"></div>
+											</div>
+											
+											<div class="x_content">
+												<canvas id="chart"></canvas>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="col-sm-6 col-xs-12">
+								<div class="x_panel">
+									
+									<div class="x_title">
+										<h2>Localização</h2>
+										<ul class="nav navbar-right panel_toolbox">
+											<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+											<li><a class="close-link"><i class="fa fa-close"></i></a></li>
+										</ul>
+										<div class="clearfix"></div>
+									</div>
+									
+									<div class="x_content">
+										<div id="map" style="height: 450px; width: 100%;"></div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="col-xs-12">
+								<div class="x_panel">
+									
+									<div class="x_title">
+										<h2><a href="/compras">Compras</a></h2>
+										<ul class="nav navbar-right panel_toolbox">
+											<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+											<li><a class="close-link"><i class="fa fa-close"></i></a></li>
+										</ul>
+										<div class="clearfix"></div>
+									</div>
+									
+									<div class="x_content">
+										<div class="row">
+											<table id="comprasTable" class="table table-striped table-bordered bulk_action">
+												<thead>
+													<tr>
+														<th class="column-title">ID</th>
+														<th class="column-title">Número Documento</th>
+														<th class="column-title">Data</th>
+														<th class="column-title">Total Mercadoria</th>
+													</tr>
+												</thead>
+												
+												<tbody>
+													<% (fornecedor.Compras).forEach(function(com){ %>
+													<tr>
+														<td><a href="/compras/<%= com.id %>"><%= com.id %></a></td>
+														<td><%= com.NumDocExterno %></td>
+														<td><%= com.Data %></td>
+														<td class="text-right"><%= com.TotalMerc %></td>
+													</tr>
+													<% }); %>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="col-xs-12">
+								<div class="x_panel">
+									
+									<div class="x_title">
+										<h2><a href="/encomendas">Encomendas</a></h2>
+										<ul class="nav navbar-right panel_toolbox">
+											<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+											<li><a class="close-link"><i class="fa fa-close"></i></a></li>
+										</ul>
+										<div class="clearfix"></div>
+									</div>
+									
+									<div class="x_content">
+										<div class="row">
+											<table id="encomendasTable" class="table table-striped table-bordered bulk_action">
+												<thead>
+													<tr>
+														<th class="column-title">Cód. Encomenda</th>
+														<th class="column-title">Data</th>
+														<th class="column-title">Total Mercadoria</th>
+														<th class="column-title">Entregue</th>
+														
+													</tr>
+												</thead>
+												
+												<tbody>
+													<% (fornecedor.Encomendas).forEach(function(enc){ %>
+													<tr>
+														<td><a href="/encomendas/<%= enc.CodEncomenda %>"><%= enc.CodEncomenda %></a></td>
+														<td><%= enc.DataDoc %></td>
+														<td class="text-right"><%= enc.TotalMerc %></td>
+														<td><%= enc.Entregue %></td>
+													</tr>
+													<% }); %>
+												</tbody>										
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="col-xs-12">
+								<div class="x_panel">
+									
+									<div class="x_title">
+										<h2><a href="/artigos">Artigos</a></h2>
+										<ul class="nav navbar-right panel_toolbox">
+											<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+											<li><a class="close-link"><i class="fa fa-close"></i></a></li>
+										</ul>
+										<div class="clearfix"></div>
+									</div>
+									
+									<div class="x_content">
+										<div class="row">
+											<table id="artigosTable" class="table table-striped table-bordered bulk_action">
+												<thead>
+													<tr>
+														<th class="column-title">Código</th>
+														<th class="column-title">Descrição</th>
+														<th class="column-title">Vendas</th>
+													</tr>
+												</thead>
+												
+												<tbody>
+													<% (fornecedor.artigos).forEach(function(art){ %>
+													<tr>
+														<td><a href="/artigos/<%= art.CodArtigo %>"><%= art.CodArtigo %></a></td>
+														<td><a href="/artigos/<%= art.CodArtigo %>"><%= art.DescArtigo %></a></td>
+														<td><%= art.nArtigos %></td>
+													</tr>
+													<% }); %>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			
+			<!-- /page content -->
+			
+		</div>
+		
+		<% include ../../partials/footer %>
+		<!-- FastClick -->
+		<script src="/vendors/fastclick/lib/fastclick.js"></script>
+		<!-- NProgress -->
+		<script src="/vendors/nprogress/nprogress.js"></script>
+		<!-- Chart.js -->
+		<script src="/vendors/Chart.js/dist/Chart.min.js"></script>
+		<!-- iCheck -->
+		<script src="/vendors/iCheck/icheck.min.js"></script>
+		<!-- Datatables -->
+		<script src="/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+		<script src="/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+		<script src="/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+		<script src="/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+		<script src="/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+		<script src="/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+		<script src="/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+		<script src="/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+		<script src="/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+		<script src="/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+		<script src="/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+		<script src="/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+		<!-- Moment -->
+		<script src="/vendors/moment/min/moment.min.js"></script>
+		<script>
+			$('#comprasTable').dataTable();
+			$('#encomendasTable').dataTable();
+			$('#artigosTable').dataTable();
+			var compras = <%- JSON.stringify(fornecedor.Compras) %>;
+			var compras_por_mes = [0,0,0,0,0,0,0,0,0,0,0,0];
+			compras.forEach(function(compra){
+				var mes = moment(compra.Data).month();
+				compras_por_mes[mes] += parseFloat(compra.TotalMerc);
+			});
+			var encomendas = <%- JSON.stringify(fornecedor.Encomendas) %>;
+			var encomendas_por_mes = [0,0,0,0,0,0,0,0,0,0,0,0];
+			encomendas.forEach(function(encomenda){
+				var mes = moment(encomenda.DataDoc).month();
+				encomendas_por_mes[mes] += parseFloat(encomenda.TotalMerc);
+			});
+			var ctx = document.getElementById("chart").getContext('2d');
+			var chart = new Chart(ctx, {
+				type: 'bar',
+				data: {
+					labels:  ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+					datasets: [{
+						label: 'Compras (€)',
+						data: compras_por_mes,
+						backgroundColor: 'rgba(255,140,0, 0.2)',
+						borderColor: 'rgba(255,140,0, 1)',
+						borderWidth: 1
+					},
+					{
+						label: 'Encomendas (€)',
+						data: encomendas_por_mes,
+					backgroundColor: 'rgba(255,215,0, 0.2)',
+					borderColor: 'rgba(255,215,0, 1)',
+					borderWidth: 1
+				}
+				]
+			},
+			options: {
+				responsive: true,
+				mantainAspectRatio: false
+			}
+		});
+		console.log(<%- JSON.stringify(fornecedor) %>);
+	</script>
+	<script src="/js/map.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYD9E2TQzUSIST7qw8ns3quQ2Ry-BDuh4&amp;libraries=places&amp;callback=initGoogleMaps" async="" defer=""></script>
+	<% include ../../partials/post_footer %>
+</body>
+
+</html>

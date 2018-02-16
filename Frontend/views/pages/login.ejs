@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+	
+	<head>
+		<% include ../partials/head %>
+		
+		<!-- NProgress -->
+		<link href="/vendors/nprogress/nprogress.css" rel="stylesheet">
+		
+		<% include ../partials/post_head %>
+	</head>
+	
+	<body class="login">
+		
+		<div class="login_wrapper">
+			<div class="form login_form">
+				<section class="login_content">
+					<form method="post" action="/login">
+						<h1>360º DASHBOARD</h1>
+						<div>
+							<input type="text" name="company" class="form-control" placeholder="Empresa" required="" value="DEMOSINF">
+						</div>
+						<div>
+							<input type="text" name="user" class="form-control" placeholder="Nome de utilizador" required="" value="sinf">
+						</div>
+						<div>
+							<input type="password" name="password" class="form-control" placeholder="Password" required="" value="sinf">
+						</div>
+						<div class="form-group">
+							<label for="address">Primavera/API endereço</label>
+							<select class="form-control" id="address" name="address">
+								<option value="localhost:49822">localhost:49822</option>
+								<option value="localhost:49822">localhost:49822</option>
+								<option value="localhost:49822">localhost:49822</option>
+								<option value="localhost:49822">localhost:49822</option>
+							</select>
+						</div>
+						<div>
+							<button type="submit" class="btn btn-default submit">Log in</a>
+						</div>
+					</form>
+				</section>
+				<% include ../partials/footer %>
+				
+				<% include ../partials/post_footer %>
+			</div>
+			
+		</div>
+		
+	</body>
+</html>
+

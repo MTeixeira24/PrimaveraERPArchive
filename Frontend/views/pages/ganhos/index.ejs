@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+	
+	<head>
+		<% include ../../partials/head %>
+		<!-- NProgress -->
+		<link href="/vendorsnprogress/nprogress.css" rel="stylesheet">
+		<!-- iCheck -->
+		<link href="/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+		<!-- bootstrap-progressbar -->
+		<link href="/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+		<!-- JQVMap -->
+		<link href="/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+		<!-- bootstrap-daterangepicker -->
+		<link href="/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+		<% include ../../partials/post_head %>
+	</head>
+	
+	<body class="nav-md">
+		<div class="container body">
+			<div class="main_container">
+				<% include ../../partials/sidebar %>
+				<% include ../../partials/topnav %>
+				
+				<!-- page content -->
+				<div class="right_col" role="main">
+					<!-- top tiles -->
+					<div class="row tile_count">
+						<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+							<span class="count_top"><i class="fa fa-money"></i> Gross Revenue</span>
+							<div class="count">250,000€</div>
+							<span class="count_bottom"><i class="green">4% </i> From last Month</span>
+						</div>
+						<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+							<span class="count_top"><i class="fa fa-money"></i> Net Revenue</span>
+							<div class="count">222,050€</div>
+							<span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Month</span>
+						</div>
+						<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+							<span class="count_top"><i class="fa fa-shopping-bag"></i> Total Sales</span>
+							<div class="count green">2,500</div>
+							<span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Month</span>
+						</div>
+						<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+							<span class="count_top"><i class="fa fa-user"></i> Total Clients</span>
+							<div class="count">4,567</div>
+							<span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Month</span>
+						</div>
+						<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+							<span class="count_top"><i class="fa fa-money"></i> Gross Margin</span>
+							<div class="count">0.57</div>
+							<span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Month</span>
+						</div>
+						<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+							<span class="count_top"><i class="fa fa-money"></i> Other Revenue</span>
+							<div class="count">7,325€</div>
+							<span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>2% </i> From last Month</span>
+						</div>
+					</div>
+					<!-- /top tiles -->
+					
+					<div class="row">
+						
+						
+						<div class="col-md-12 col-sm-12 col-xs-12">
+							<div class="dashboard_graph">
+								
+								<div class="row x_title">
+									<div class="col-md-6">
+										<h3>Net Revenue vs Gross Revenue <small>For each store</small></h3>
+									</div>
+									<div class="col-md-6">
+										<div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+											<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+											<span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-10 col-xs-12 col-sm-12">
+									<div style="width: 100%">
+										<canvas id="canvas"></canvas>
+									</div>
+									
+								</div>
+								<div class="col-md-2 col-xs-12 col-sm-12 labels" >
+									<div class="first-label">
+										<span class="red-label"></span> Gross Revenue
+									</div>
+									<div>
+										<span class="green-label"></span> Net Revenue
+									</div>
+									
+									
+								</div>
+								<div class="clearfix"></div>
+							</div>
+						</div>
+						
+					</div>
+					<br />
+					
+					<div class="row">
+						
+						
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<div class="x_panel tile fixed_height_320">
+								<div class="x_title">
+									<h2>Gross Margin vs Net Revenue <small>For each store</small></h2>
+									<ul class="nav navbar-right panel_toolbox">
+										<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+										</li>
+										<li class="dropdown">
+											<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+											<ul class="dropdown-menu" role="menu">
+												<li><a href="#">Settings 1</a>
+												</li>
+												<li><a href="#">Settings 2</a>
+												</li>
+											</ul>
+										</li>
+										<li><a class="close-link"><i class="fa fa-close"></i></a>
+										</li>
+									</ul>
+									<div class="clearfix"></div>
+								</div>
+								<div class="x_content">
+									<div class="col-xs-12">
+										<div style="width: 100%">
+											<canvas id="canvas1"></canvas>
+										</div>
+										
+										
+									</div>
+									<div class="col-xs-12 labels-bottom" >
+										<div>
+											<span class="green-label"></span> Net Revenue
+										</div>
+										<div>
+											<span class="blue-label"></span> Gross-Margin
+										</div>
+										
+										
+									</div>
+									
+								</div>
+							</div>
+						</div>
+						
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<div class="x_panel tile fixed_height_320 overflow_hidden">
+								<div class="x_title">
+									<h2>Gross Margin vs Net Revenue <small>For each client</small></h2>
+									<ul class="nav navbar-right panel_toolbox">
+										<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+										</li>
+										<li class="dropdown">
+											<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+											<ul class="dropdown-menu" role="menu">
+												<li><a href="#">Settings 1</a>
+												</li>
+												<li><a href="#">Settings 2</a>
+												</li>
+											</ul>
+										</li>
+										<li><a class="close-link"><i class="fa fa-close"></i></a>
+										</li>
+									</ul>
+									<div class="clearfix"></div>
+								</div>
+								<div class="x_content">
+									<div class="col-xs-12">
+										<div style="width: 100%">
+											<canvas id="canvas2"></canvas>
+										</div>
+										
+										<script>
+											var randomScalingFactor = function() {
+												return (Math.random() > 0.5 ? 1.0 : -1.0) * Math.round(Math.random() * 100);
+											};
+											var randomColorFactor = function() {
+												return Math.round(Math.random() * 255);
+											};
+											
+											var barChartData = {
+												labels: ["Store1", "Store2", "Store3", "Store4", "Store5", "Store6", "Store7", "Store8"],
+												datasets: [{
+													type: 'bar',
+													label: 'Net Revenue',
+													backgroundColor: "rgba(30,230,30,0.7)",
+													data: [30, 23, 30, 50, 50, 40, 50, 70],
+													borderColor: 'white',
+													borderWidth: 2
+													}, /*{
+													type: 'line',
+													label: 'Dataset 2',
+													backgroundColor: "rgba(0,255,0,1)",
+													data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()],
+													borderColor: 'white',
+													borderWidth: 2
+													}, */{
+													type: 'bar',
+													label: 'Gross Revenue',
+													backgroundColor: "rgba(230,30,30,0.7)",
+													data: [35, 25, 40, 70, 75, 45, 50, 75]
+												}, ]
+												
+											};
+											
+											var barChartData1 = {
+												labels: ["Store1", "Store2", "Store3", "Store4", "Store5", "Store6", "Store7", "Store8"],
+												datasets: [{
+													type: 'bar',
+													label: 'Net Revenue',
+													backgroundColor: "rgba(30,230,30,0.7)",
+													data: [30, 23, 30, 50, 50, 40, 50, 70],
+													borderColor: 'white',
+													borderWidth: 2
+													}, {
+													type: 'line',
+													label: 'Dataset 2',
+													backgroundColor: "white",
+													data: [35, 40, 45, 46, 38, 32, 37, 31],
+													borderColor: "rgba(30,30,230,0.7)",
+													borderWidth: 2
+												}, ]
+												
+											};
+											
+											
+											var barChartData2 = {
+												labels: ["Client1", "Client2", "Client3", "Client4", "Client5", "Client6", "Client7", "Client8"],
+												datasets: [{
+													type: 'bar',
+													label: 'Net Revenue',
+													backgroundColor: "rgba(30,230,30,0.7)",
+													data: [30, 23, 30, 50, 50, 40, 50, 70],
+													borderColor: 'white',
+													borderWidth: 2
+													}, {
+													type: 'line',
+													label: 'Dataset 2',
+													backgroundColor: "white",
+													data: [35, 40, 45, 46, 38, 32, 37, 31],
+													borderColor: "rgba(30,30,230,0.7)",
+													borderWidth: 2
+												}, ]
+												
+											};
+											window.onload = function() {
+												var ctx = document.getElementById("canvas").getContext("2d");
+												var ctx1 = document.getElementById("canvas1").getContext("2d");
+												var ctx2 = document.getElementById("canvas2").getContext("2d");
+												window.myBar = new Chart(ctx1, {
+													type: 'bar',
+													data: barChartData1,
+													options: {
+														responsive: true,
+														title: {
+															display: true,
+															
+														}
+													}
+												});
+												window.myBar = new Chart(ctx, {
+													type: 'bar',
+													data: barChartData,
+													options: {
+														responsive: true,
+														title: {
+															display: true,
+															
+														}
+													}
+												});
+												window.myBar = new Chart(ctx2, {
+													type: 'bar',
+													data: barChartData2,
+													options: {
+														responsive: true,
+														title: {
+															display: true,
+															
+														}
+													}
+												});
+												
+											};
+											
+											$('#randomizeData').click(function() {
+												$.each(barChartData.datasets, function(i, dataset) {
+													dataset.backgroundColor = 'rgba(' + randomColorFactor() + ',' + randomColorFactor() + ',' + randomColorFactor() + ',.7)';
+													dataset.data = [0, 0, 0, r0, randomScalingFactor(), randomScalingFactor(), randomScalingFactor()];
+													
+												});
+												window.myBar.update();
+											});
+										</script>
+									</div>
+									<div class="col-xs-12 labels-bottom" >
+										<div>
+											<span class="green-label"></span> Net Revenue
+										</div>
+										<div>
+											<span class="blue-label"></span> Gross-Margin
+										</div>
+										
+										
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						
+						
+						
+					</div>
+					
+					
+					<div class="row">
+						<div class="col-md-4 col-sm-4 col-xs-12">
+							<div class="x_panel">
+								<div class="x_title">
+									<h2>Recent Updates <small>Of each store</small></h2>
+									<ul class="nav navbar-right panel_toolbox">
+										<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+										</li>
+										<li class="dropdown">
+											<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+											<ul class="dropdown-menu" role="menu">
+												<li><a href="#">Settings 1</a>
+												</li>
+												<li><a href="#">Settings 2</a>
+												</li>
+											</ul>
+										</li>
+										<li><a class="close-link"><i class="fa fa-close"></i></a>
+										</li>
+									</ul>
+									<div class="clearfix"></div>
+								</div>
+								<div class="x_content">
+									<div class="dashboard-widget-content">
+										
+										<ul class="list-unstyled timeline widget">
+											<li>
+												<div class="block">
+													<div class="block_content">
+														<h2 class="title">
+															Lorem ipsum dolor sit amet
+														</h2>
+														<div class="byline">
+															<span>13 hours ago</span> by <a>Store1</a>
+														</div>
+														<p class="excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sed sodales arcu, vel egestas sem. Donec id luctus dolor, vitae pretium purus. Praesent sit amet vestibulum leo, ut condimentum... <a>Read&nbsp;More</a>
+														</p>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="block">
+													<div class="block_content">
+														<h2 class="title">
+															Lorem ipsum dolor sit amet
+														</h2>
+														<div class="byline">
+															<span>13 hours ago</span> by <a>Store1</a>
+														</div>
+														<p class="excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sed sodales arcu, vel egestas sem. Donec id luctus dolor, vitae pretium purus. Praesent sit amet vestibulum leo, ut condimentum... <a>Read&nbsp;More</a>
+														</p>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="block">
+													<div class="block_content">
+														<h2 class="title">
+															Lorem ipsum dolor sit amet
+														</h2>
+														<div class="byline">
+															<span>13 hours ago</span> by <a>Store1</a>
+														</div>
+														<p class="excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sed sodales arcu, vel egestas sem. Donec id luctus dolor, vitae pretium purus. Praesent sit amet vestibulum leo, ut condimentum... <a>Read&nbsp;More</a>
+														</p>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="block">
+													<div class="block_content">
+														<h2 class="title">
+															Lorem ipsum dolor sit amet
+														</h2>
+														<div class="byline">
+															<span>13 hours ago</span> by <a>Store1</a>
+														</div>
+														<p class="excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sed sodales arcu, vel egestas sem. Donec id luctus dolor, vitae pretium purus. Praesent sit amet vestibulum leo, ut condimentum... <a>Read&nbsp;More</a>
+														</p>
+													</div>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						
+						<div class="col-md-8 col-sm-8 col-xs-12">
+							
+							
+							
+							<div class="row">
+								
+								<div class="col-md-12 col-sm-12 col-xs-12">
+									<div class="panel panel-body">
+										<div class="x_title">
+											<h4>Objective's progress of each store</h4>
+										</div>
+										
+										<div class="row">
+											<div class="col-xs-12" style="text-align: center;">
+												<h5><strong>Store 1</strong></h5>
+											</div>
+											<div class="col-xs-4" >
+												<h5>Net Revenue:</h5>
+												<span class="chart" data-percent="86">
+													<span class="percent"></span>
+												</span>
+											</div>
+											<div class="col-xs-4">
+												<h5>Gross Margin:</h5>
+												<span class="chart" data-percent="73">
+													<span class="percent"></span>
+												</span>
+											</div>
+											<div class="col-xs-4">
+												<h5>Total Sales:</h5>
+												<span class="chart" data-percent="60">
+													<span class="percent"></span>
+												</span>
+											</div>
+											<div class="clearfix"></div>
+										</div>
+										<div class="col-xs-12">
+											<ul class="pie-bottom">
+												<li class="first-store">1</li>
+												<li>2</li>
+												<li>3</li>
+												<li>4</li>
+												<li>5</li>
+												<li>6</li>
+												<li>7</li>
+												<li>8</li>
+											</ul>
+										</div>
+										
+										
+									</div>
+									
+								</div>
+								
+							</div>
+							<div class="row">
+								
+								
+								
+								
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /page content -->
+				
+			</div>
+		</div>
+		
+		<% include ../../partials/footer %>
+		
+		<!-- FastClick -->
+		<script src="/vendors/fastclick/lib/fastclick.js"></script>
+		<!-- NProgress -->
+		<script src="/vendors/nprogress/nprogress.js"></script>
+		<!-- Chart.js -->
+		<script src="/vendors/Chart.js/dist/Chart.min.js"></script>
+		<!-- gauge.js -->
+		<script src="/vendors/gauge.js/dist/gauge.min.js"></script>
+		<!-- bootstrap-progressbar -->
+		<script src="/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+		<!-- iCheck -->
+		<script src="/vendors/iCheck/icheck.min.js"></script>
+		<!-- Skycons -->
+		<script src="/vendors/skycons/skycons.js"></script>
+		<!-- Flot -->
+		<script src="/vendors/Flot/jquery.flot.js"></script>
+		<script src="/vendors/Flot/jquery.flot.pie.js"></script>
+		<script src="/vendors/Flot/jquery.flot.time.js"></script>
+		<script src="/vendors/Flot/jquery.flot.stack.js"></script>
+		<script src="/vendors/Flot/jquery.flot.resize.js"></script>
+		<!-- Flot plugins -->
+		<script src="/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+		<script src="/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+		<script src="/vendors/flot.curvedlines/curvedLines.js"></script>
+		<!-- DateJS -->
+		<script src="/vendors/DateJS/build/date.js"></script>
+		<!-- JQVMap -->
+		<script src="/vendors/jqvmap/dist/jquery.vmap.js"></script>
+		<script src="/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+		<script src="/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+		<!-- bootstrap-daterangepicker -->
+		<script src="/vendors/moment/min/moment.min.js"></script>
+		<script src="/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+		
+		<!-- easy-pie-chart -->
+		<script src="/vendors/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
+		<% include ../../partials/post_footer %>
+	</body>
+	
+</html>
+
